@@ -16,10 +16,13 @@ function saveCommands() {
 // command-table with them.
 function populateCommandTable() {
 	let commandTable = document.getElementById("commandTable");
-	for (cmdRegex of JSON.parse(localStorage.getItem("commands"))) {
-		let commandTr = createCommandTr(cmdRegex[0], cmdRegex[1]);
-		commandTable.appendChild(commandTr);
-	}
+	try {
+		let savedCommands = JSON.parse(localStorage.getItem("commands"));
+		for (cmdRegex of savedCommands) {
+			let commandTr = createCommandTr(cmdRegex[0], cmdRegex[1]);
+			commandTable.appendChild(commandTr);
+		}
+	} catch { };
 	// Always add a spare entry.
 	commandTable.appendChild(createCommandTr("", ""));
 }

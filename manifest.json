@@ -15,12 +15,13 @@
 			"19": "res/shellfox-19.png",
 			"38": "res/shellfox-38.png"
 		},
-		"default_title": "Shellfox",
-		"show_matches": ["<all_urls>"]
+		"default_title": "Shellfox"
 	},
 
 	"permissions": [
-		"nativeMessaging"
+		"nativeMessaging",
+		"activeTab",
+		"tabs"
 	],
 
 	"browser_specific_settings": {
