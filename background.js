@@ -1,8 +1,7 @@
 let port = undefined;
 
-
 // Run the shellfox helper program.
-function init_shellfox_port() {
+function initShellfoxProgram() {
 	port = browser.runtime.connectNative("shellfox");
 	port.onDisconnect.addListener((port) => {
 		console.log(port.error);
@@ -38,7 +37,7 @@ function getUrlCommand(url) {
 function runUrlCommand(url) {
 	let command = getUrlCommand(url);
 	if (!port)
-		init_shellfox_port();
+		initShellfoxProgram();
 	if (command && port) {
 		port.postMessage(command);
 	}
@@ -57,6 +56,24 @@ function compareRegexComplexity(a, b) {
 }
 
 
+// Add a context-menu item for running the current page’s associated command.
+function createContextMenuItem() {
+	browser.menus.create(
+		{
+			id: "run-page-command",
+			title: "Run shell command",
+			contexts: ["page"]
+		}
+	);
+}
+
+
+// Simply remove the context-menu item.
+function removeContextMenuItem() {
+	browser.menus.remove("run-page-command");
+}
+
+
 // When the address-bar button is clicked, run the according command (if any).
 browser.pageAction.onClicked.addListener((tab) => {
 	runUrlCommand(tab.url);
@@ -66,10 +83,16 @@ browser.pageAction.onClicked.addListener((tab) => {
 // When a tab’s URL has been changed, enable/disable the address-bar button
 // based on whether or not there is an according command.
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	if (getUrlCommand(tab.url))
+	let command = getUrlCommand(tab.url);
+	if (command) {
 		browser.pageAction.show(tabId);
-	else
+		if (tab.active)
+			createContextMenuItem();
+	} else {
 		browser.pageAction.hide(tabId);
+		if (tab.active)
+			removeContextMenuItem();
+	}
 });
 
 
@@ -77,7 +100,18 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 // on whether or not there is an according command for it.
 browser.tabs.onActivated.addListener((activeInfo) => {
 	browser.tabs.get(activeInfo.tabId).then((tab) => {
-		if (getUrlCommand(tab.url))
+		if (getUrlCommand(tab.url)) {
 			browser.pageAction.show(tab.id);
+			createContextMenuItem();
+		} else {
+			browser.pageAction.hide(tab.id);
+			removeContextMenuItem();
+		}
 	});
+});
+
+
+browser.menus.onClicked.addListener((info, tab) => {
+	if (info.menuItemId == "run-page-command")
+		runUrlCommand(tab.url);
 });
