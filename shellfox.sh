@@ -25,8 +25,15 @@ read_message() {
 }
 
 
+# Deescape a JSON stream from input.
+json_deescape() {
+	sed 's/^"//' \
+		| sed 's/"$//' \
+		| sed 's/\"/"/g'
+}
+
+
 while true; do
-	message="$(read_message)"
-	command="$(echo "$message" | sed 's/^"//' | sed 's/"$//')"
-	"$SHELL" -c "$command"
+	command="$(read_message | json_deescape)"
+	nohup "$SHELL" -c "$command" > /dev/null &
 done
