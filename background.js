@@ -5,19 +5,20 @@ let port = browser.runtime.connectNative("shellfox");
 function getUrlCommand(url) {
 	let matchCommand = undefined;
 	let matchRegex = "";
-
 	try {
 		let savedCommands = JSON.parse(localStorage.getItem("commands"));
+		// Find the most-applicable command…
 		for (regexCommandPair of savedCommands) {
 			let regex = regexCommandPair[0];
 			let match = url.match(regex);
 			let compared = compareRegexComplexity(matchRegex, regex);
-			console.log(matchRegex, "v", regex, "=", compared);
 			if (match && (compared == 0 || compared == 1)) {
 				matchCommand = regexCommandPair[1];
 				matchRegex = regex;
 			}
 		}
+		// … and replace the substitution-string with the URL.
+		matchCommand = matchCommand.replaceAll("%s", url);
 	} catch {};
 	return matchCommand;
 }
