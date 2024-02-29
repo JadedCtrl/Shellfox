@@ -1,4 +1,14 @@
-let port = browser.runtime.connectNative("shellfox");
+let port = undefined;
+
+
+// Run the shellfox helper program.
+function init_shellfox_port() {
+	port = browser.runtime.connectNative("shellfox");
+	port.onDisconnect.addListener((port) => {
+		console.log(port.error);
+		port = undefined;
+	});
+}
 
 
 // Return the command-string associated with a URL, if any.
@@ -26,8 +36,9 @@ function getUrlCommand(url) {
 
 // Execute the shell command associated with the given URL, if any.
 function runUrlCommand(url) {
-	console.log("Executing…");
 	let command = getUrlCommand(url);
+	if (!port)
+		init_shellfox_port();
 	if (command && port) {
 		port.postMessage(command);
 	}
@@ -46,20 +57,15 @@ function compareRegexComplexity(a, b) {
 }
 
 
-port.onDisconnect.addListener((port) => {
-	console.log(port.error);
-	port = undefined;
-});
-
-
+// When the address-bar button is clicked, run the according command (if any).
 browser.pageAction.onClicked.addListener((tab) => {
-	console.log("onClicked");
 	runUrlCommand(tab.url);
 });
 
 
+// When a tab’s URL has been changed, enable/disable the address-bar button
+// based on whether or not there is an according command.
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	console.log("onUpdated");
 	if (getUrlCommand(tab.url))
 		browser.pageAction.show(tabId);
 	else
@@ -67,8 +73,11 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 
+// When the active tab has changed, enable/disable the address-bar button based
+// on whether or not there is an according command for it.
 browser.tabs.onActivated.addListener((activeInfo) => {
-	console.log("activated");
-	let url = browser.tabs.get(activeInfo.tabId).url;
+	browser.tabs.get(activeInfo.tabId).then((tab) => {
+		if (getUrlCommand(tab.url))
+			browser.pageAction.show(tab.id);
+	});
 });
-
