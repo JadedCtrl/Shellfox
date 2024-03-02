@@ -56,22 +56,48 @@ function compareRegexComplexity(a, b) {
 }
 
 
+// Display the “Run shell command” context-menu item.
+function showPageContextMenuItem() {
+	browser.menus.update("run-page-command", { "visible": true });
+}
+
+
+// Display the “Run command on link” context-menu item.
+function showLinkContextMenuItem() {
+	browser.menus.update("run-page-commands", { "visible": true });
+}
+
+
+// Hide the “Run shell command context-menu item.
+function hidePageContextMenuItem() {
+	browser.menus.update("run-page-command", { "visible": false });
+}
+
+
+// Hide the “Run command on link” context-menu item.
+function hideLinkContextMenuItem() {
+	browser.menus.update("run-page-commands", { "visible": false });
+}
+
+
 // Add a context-menu item for running the current page’s associated command.
-function createContextMenuItem() {
-	browser.menus.create(
-		{
-			id: "run-page-command",
-			title: "Run shell command",
-			contexts: ["page"]
-		}
-	);
-}
+browser.menus.create(
+	{
+		id: "run-page-command",
+		title: "Run shell command",
+		contexts: ["page"]
+	}
+);
 
 
-// Simply remove the context-menu item.
-function removeContextMenuItem() {
-	browser.menus.remove("run-page-command");
-}
+// Add a context-menu item for running the command associated with a link.
+browser.menus.create(
+	{
+		id: "run-link-command",
+		title: "Run command on link",
+		contexts: ["link"]
+	}
+);
 
 
 // When the address-bar button is clicked, run the according command (if any).
@@ -80,19 +106,27 @@ browser.pageAction.onClicked.addListener((tab) => {
 });
 
 
+browser.menus.onShown.addListener(info => {
+	if (info.contexts.includes("link") && getUrlCommand(info.linkUrl))
+		showLinkContextMenuItem();
+	else if (info.contexts.includes("page") && getUrlCommand(info.pageUrl))
+			showPageContextMenuItem();
+	else {
+		hidePageContextMenuItem();
+		hideLinkContextMenuItem();
+	}
+	browser.menus.refresh();
+});
+
+
 // When a tab’s URL has been changed, enable/disable the address-bar button
 // based on whether or not there is an according command.
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	let command = getUrlCommand(tab.url);
-	if (command) {
+	if (command)
 		browser.pageAction.show(tabId);
-		if (tab.active)
-			createContextMenuItem();
-	} else {
+	else
 		browser.pageAction.hide(tabId);
-		if (tab.active)
-			removeContextMenuItem();
-	}
 });
 
 
@@ -100,18 +134,19 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 // on whether or not there is an according command for it.
 browser.tabs.onActivated.addListener((activeInfo) => {
 	browser.tabs.get(activeInfo.tabId).then((tab) => {
-		if (getUrlCommand(tab.url)) {
+		if (getUrlCommand(tab.url))
 			browser.pageAction.show(tab.id);
-			createContextMenuItem();
-		} else {
+		else
 			browser.pageAction.hide(tab.id);
-			removeContextMenuItem();
-		}
 	});
 });
 
 
+// When a context-menu item is selected, let’s execute its will!
 browser.menus.onClicked.addListener((info, tab) => {
 	if (info.menuItemId == "run-page-command")
 		runUrlCommand(tab.url);
+	else if (info.menuItemId == "run-link-command" && info.linkUrl)
+		runUrlCommand(info.linkUrl);
+
 });
