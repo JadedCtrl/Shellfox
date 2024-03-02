@@ -16,18 +16,20 @@ function getUrlCommand(url) {
 	let matchRegex = "";
 	try {
 		let savedCommands = JSON.parse(localStorage.getItem("commands"));
+		let savedRegexRules = JSON.parse(localStorage.getItem("urlRules"));
 		// Find the most-applicable command…
-		for (regexCommandPair of savedCommands) {
-			let regex = regexCommandPair[0];
+		for (regexCommandIPair of savedRegexRules) {
+			let regex = regexCommandIPair[0];
 			let match = url.match(regex);
 			let compared = compareRegexComplexity(matchRegex, regex);
 			if (match && (compared == 0 || compared == 1)) {
-				matchCommand = regexCommandPair[1];
+				let command_i = regexCommandIPair[1];
+				matchCommand = savedCommands[command_i][1];
 				matchRegex = regex;
 			}
 		}
 		// … and replace the substitution-string with the URL.
-		matchCommand = matchCommand.replaceAll("%s", url);
+		matchCommand = matchCommand.replaceAll("$URL", url);
 	} catch {};
 	return matchCommand;
 }

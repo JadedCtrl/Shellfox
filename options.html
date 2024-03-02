@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf8">
+	</head>
 	<body>
-		<table id="commandTable">
-			<tr>
-				<th>URL regex</th>
-				<th>Shell command</th>
-			</tr>
-<!--			<tr class="regexCommandRow">
-				<td>
-					<input type="text"  class="regex" name="color"
-						   placeholder="https://example.com/*"/>
-				</td>
-				<td>
-					<input type="text" class="command" name="color"
-						   placeholder="curl %s > /tmp/example" />
-				</td>
-			</tr> -->
-		</table>
+		<section>
+			<h3>Shell commands</h3>
+			<p>Add shell commands, to be executed with a page’s URL as its argument. In a command, $URL will be replaced with the target page’s URL.</p>
+			<table id="commandTable">
+				<tr>
+					<th>Name</th>
+					<th>Shell command</th>
+				</tr>
+			</table>
+			<button style="width: 5em;" id="save-cmd">Apply</button>
+		</section>
 
-		<button id="save">Apply</button>
+
+		<section>
+			<h3>URL/Page rules</h3>
+			<p>Associate the above commands with URLs, based on regex rules. When a URL is tied to a command, a button will appear in context-menus and the address bar to run said command.</p>
+			<table id="regexTable">
+				<tr>
+					<th>URL regex</th>
+					<th>Shell command</th>
+				</tr>
+			</table>
+			<button style="width: 5em;" id="save-regex">Apply</button>
+		</section>
+
 
 		<script src="options.js"></script>
 	</body>
