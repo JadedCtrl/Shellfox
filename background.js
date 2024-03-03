@@ -108,13 +108,31 @@ function createCommandMenuItems() {
 	for (let i = 0; i < savedCommands.length; i++) {
 		let nameCommandPair = savedCommands[i];
 		let name = nameCommandPair[0];
+		let actionId = "run-pageaction-command-" + i;
+		browser.menus.remove(actionId);
+		browser.menus.create(
+			{
+				id: actionId,
+				title: "Run command “" + name + "”",
+				contexts: ["page_action"]
+			});
+
 		let pageId = "run-page-command-" + i;
 		browser.menus.remove(pageId);
 		browser.menus.create(
 			{
 				id: pageId,
 				title: "Run command “" + name + "”",
-				contexts: ["page_action"]
+				contexts: ["page"]
+			});
+
+		let linkId = "run-link-command-" + i;
+		browser.menus.remove(linkId);
+		browser.menus.create(
+			{
+				id: linkId,
+				title: "Run “" + name + "” on link",
+				contexts: ["link"]
 			});
 	}
 	browser.menus.refresh();
@@ -125,7 +143,7 @@ function createCommandMenuItems() {
 browser.menus.create(
 	{
 		id: "run-page-command",
-		title: "Run shell command",
+		title: "Run default shell command",
 		contexts: ["page"]
 	}
 );
@@ -135,7 +153,7 @@ browser.menus.create(
 browser.menus.create(
 	{
 		id: "run-link-command",
-		title: "Run command on link",
+		title: "Run default command on link",
 		contexts: ["link"]
 	}
 );
@@ -194,9 +212,9 @@ browser.menus.onClicked.addListener((info, tab) => {
 		runUrlCommand(tab.url);
 	else if (itemName == "run-link-command" && info.linkUrl)
 		runUrlCommand(info.linkUrl);
-	else if (itemName.startsWith("run-page-command-")) {
-		let command_i = itemName.split("run-page-command-")[1];
-		runCommand(savedArray("commands")[command_i][1], tab.url);
+	else if (itemName.startsWith("run-")) {
+		let command_i = itemName.split("-command-")[1];
+		runCommand(savedArray("commands")[command_i][1], info.linkUrl || tab.url);
 	}
 });
 
