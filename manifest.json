@@ -16,8 +16,9 @@
 
 	"page_action": {
 		"default_icon": {
-			"19": "res/shellfox-19.png",
-			"38": "res/shellfox-38.png"
+			"250": "res/shellfox-action.png",
+			"38": "res/shellfox-action-38.png",
+			"19": "res/shellfox-action-19.png"
 		},
 		"default_title": "__MSG_pageActionName__"
 	},
