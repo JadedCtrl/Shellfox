@@ -7,7 +7,9 @@
 	"homepage_url": "https://hak.xwx.moe/jadedctrl/shellfox",
 
 	"icons": {
-		"48": "res/shellfox.png"
+		"250": "res/shellfox.png",
+		"38": "res/shellfox-38.png",
+		"19": "res/shellfox-19.png"
 	},
 
 	"page_action": {
