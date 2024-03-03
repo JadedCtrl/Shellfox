@@ -1,11 +1,9 @@
 // Given the name of an array saved to localStorage, return it (if possible).
 function savedArray(name) {
-	let saved = [];
 	try {
-		saved = JSON.parse(localStorage.getItem(name));
+		let saved = JSON.parse(localStorage.getItem(name));
 		return saved;
-	} catch { };
-	return saved;
+	} catch { return []; };
 }
 
 
@@ -93,7 +91,7 @@ function createRegexTr(regex, command_i, commandMenu) {
 	let regexInput = document.createElement("INPUT");
 	regexInput.setAttribute("class", "regex");
 	regexInput.setAttribute("type", "text");
-	regexInput.setAttribute("placeholder", "https://example.org/.*");
+	regexInput.setAttribute("placeholder", browser.i18n.getMessage("optionsPlaceholderRule"));
 	if (regex && command_i)
 		regexInput.setAttribute("value", regex);
 
@@ -119,7 +117,7 @@ function createCommandTr(name, command) {
 	let nameInput = document.createElement("INPUT");
 	nameInput.setAttribute("class", "name");
 	nameInput.setAttribute("type", "text");
-	nameInput.setAttribute("placeholder", "Curl");
+	nameInput.setAttribute("placeholder", browser.i18n.getMessage("optionsPlaceholderName"));
 	if (name && command)
 		nameInput.setAttribute("value", name);
 
@@ -129,7 +127,7 @@ function createCommandTr(name, command) {
 	let commandInput = document.createElement("INPUT");
 	commandInput.setAttribute("class", "command");
 	commandInput.setAttribute("type", "text");
-	commandInput.setAttribute("placeholder", "curl $URL > /tmp/downloaded");
+	commandInput.setAttribute("placeholder", browser.i18n.getMessage("optionsPlaceholderCommand"));
 	if (name && command)
 		commandInput.setAttribute("value", command);
 
@@ -141,6 +139,25 @@ function createCommandTr(name, command) {
 	tr.appendChild(nameTd);
 	tr.appendChild(commandTd);
 	return tr;
+}
+
+
+// Replace the HTML elements’ text with the extension’s translations.
+function i18nPage() {
+	document.getElementsByTagName("html")[0].setAttribute("lang", browser.i18n.getMessage("@@ui_locale"));
+
+	document.getElementById("commandTitle").innerText = browser.i18n.getMessage("optionsTitleShell");
+	document.getElementById("commandP").innerText = browser.i18n.getMessage("optionsDescShell");
+	document.getElementById("commandNameTh").innerText = browser.i18n.getMessage("optionsHeadShellName");
+	document.getElementById("commandShellTh").innerText = browser.i18n.getMessage("optionsHeadShellCommand");
+
+	document.getElementById("ruleTitle").innerText = browser.i18n.getMessage("optionsTitleRule");
+	document.getElementById("ruleP").innerText = browser.i18n.getMessage("optionsDescRule");
+	document.getElementById("ruleRegexTh").innerText = browser.i18n.getMessage("optionsHeadRuleName");
+	document.getElementById("ruleShellTh").innerText = browser.i18n.getMessage("optionsHeadRuleCommand");
+
+	document.getElementById("save-cmd").innerText = browser.i18n.getMessage("optionsSaveButton");
+	document.getElementById("save-regex").innerText = browser.i18n.getMessage("optionsSaveButton");
 }
 
 
@@ -157,3 +174,4 @@ document.addEventListener("click", e => {
 
 populateCommandTable();
 populateRegexTable();
+i18nPage();

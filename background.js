@@ -12,12 +12,10 @@ function initShellfoxProgram() {
 
 // Given the name of an array saved to localStorage, return it (if possible).
 function savedArray(name) {
-	let saved = [];
 	try {
-		saved = JSON.parse(localStorage.getItem(name));
+		let saved = JSON.parse(localStorage.getItem(name));
 		return saved;
-	} catch { };
-	return saved;
+	} catch { return []; };
 }
 
 
@@ -113,7 +111,7 @@ function createCommandMenuItems() {
 		browser.menus.create(
 			{
 				id: actionId,
-				title: "Run command “" + name + "”",
+				title: browser.i18n.getMessage("pageCommandContextMenu", name),
 				contexts: ["page_action"]
 			});
 
@@ -122,7 +120,7 @@ function createCommandMenuItems() {
 		browser.menus.create(
 			{
 				id: pageId,
-				title: "Run command “" + name + "”",
+				title: browser.i18n.getMessage("pageCommandContextMenu", name),
 				contexts: ["page"]
 			});
 
@@ -131,7 +129,7 @@ function createCommandMenuItems() {
 		browser.menus.create(
 			{
 				id: linkId,
-				title: "Run “" + name + "” on link",
+				title: browser.i18n.getMessage("linkCommandContextMenu", name),
 				contexts: ["link"]
 			});
 	}
@@ -143,7 +141,7 @@ function createCommandMenuItems() {
 browser.menus.create(
 	{
 		id: "run-page-command",
-		title: "Run default shell command",
+		title: browser.i18n.getMessage("pageCommandDefaultContextMenu"),
 		contexts: ["page"]
 	}
 );
@@ -153,7 +151,7 @@ browser.menus.create(
 browser.menus.create(
 	{
 		id: "run-link-command",
-		title: "Run default command on link",
+		title: browser.i18n.getMessage("linkCommandDefaultContextMenu"),
 		contexts: ["link"]
 	}
 );
@@ -168,8 +166,6 @@ browser.pageAction.onClicked.addListener((tab) => {
 // When a context-menu (right-click menu) is opened, only display the SHellfox
 // item if there is a configured command for that page.
 browser.menus.onShown.addListener(info => {
-	console.log(info);
-	console.log(info.modifiers);
 	if (info.contexts.includes("link") && getUrlCommands(info.linkUrl)) {
 		showLinkContextMenuItem();
 	} else if (info.contexts.includes("page") && getUrlCommands(info.pageUrl)) {

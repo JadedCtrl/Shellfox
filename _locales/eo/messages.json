@@ -1,0 +1,108 @@
+{
+	"extensionName": {
+		"message": "Ŝelvulpo",
+		"description": "Nomo de la aldonaĵo."
+	},
+
+	"extensionDescription": {
+		"message": "Ruli ŝel-ordonojn de Firefox, facile.",
+		"description": "Priskribo de la aldonaĵo."
+	},
+
+	"pageActionName": {
+		"message": "Ruli ŝel-ordonon",
+		"description": "Nomo de butono por ruli la implicitan ordonon de la nuna paĝo."
+	},
+
+	"pageCommandContextMenu": {
+		"message": "Ruli ordonon «$COMMAND$»",
+		"description": "Menuero por ruli specifan ordonon je la nuna paĝo.",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "Curl"
+			}
+		}
+	},
+
+	"pageCommandDefaultContextMenu": {
+		"message": "Ruli implicitan ŝel-ordonon",
+		"description": "Menuero por ruli la implicitan ordonon je la nuna paĝo."
+	},
+
+	"linkCommandContextMenu": {
+		"message": "Ruli «$COMMAND$» je ligilo",
+		"description": "Menuero por ruli specifan ordonon je ligilo.",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "Curl"
+			}
+		}
+	},
+
+	"linkCommandDefaultContextMenu": {
+		"message": "Ruli implicitan ordonon je ligilo",
+		"description": "Menuero por ruli la implicitan ordonon je ligilo."
+	},
+
+	"optionsTitleShell": {
+		"message": "Ŝel-ordonoj",
+		"description": "Titolo de agordo-parto por ordonoj."
+	},
+
+	"optionsDescShell": {
+		"message": "Alondi ŝel-ordonojn kiuj ruliĝas kun la URL de paĝo kiel parametro. En ordono, «$URL» anstataŭiĝos per tiu URL.",
+		"description": "Priskribo de agordo-parto por ordonoj."
+	},
+
+	"optionsHeadShellName": {
+		"message": "Nomo",
+		"description": "Titolo de tabelo-kolumno por agordo-parto por ordonoj."
+	},
+
+	"optionsHeadShellCommand": {
+		"message": "Ŝel-ordono",
+		"description": "Titolo de tabelo-kolumno por agordo-parto por ordonoj."
+	},
+
+	"optionsPlaceholderName": {
+		"message": "Curl",
+		"description": "Provizora valoro ĉe agordopaĝo por enigo de ordononomo."
+	},
+
+	"optionsPlaceholderCommand": {
+		"message": "curl $URL > /tmp/elŝutite.html",
+		"description": "Provizora valoro ĉe agordopaĝo por enigo de ordono."
+	},
+
+	"optionsTitleRule": {
+		"message": "URL/Paĝo-reguloj",
+		"description": "Titolo de agordo-parto por regulaj esprimoj."
+	},
+
+	"optionsDescRule": {
+		"message": "Ligi la suprajn ŝel-ordonojn al URLoj, laŭ regulaj esprimoj. Se URL estas ligita al ordono, butono aperiĝos en la supra breto por ruli ĝin.",
+		"description": "Priskribo de agordo-parto por regulaj esprimoj."
+	},
+
+	"optionsHeadRuleName": {
+		"message": "URL regula esprimo",
+		"description": "Titolo de tabelo-kolumno ĉe agordo-parto por regulaj esprimoj."
+	},
+
+	"optionsHeadRuleCommand": {
+		"message": "Ŝel-ordonoj",
+		"description": "Titolo de tabelo-kolumno ĉe agordo-parto por regulaj esprimoj."
+	},
+
+	"optionsPlaceholderRule": {
+		"message": "https://ekzemplo.org/.*",
+		"description": "Provizora valoro ĉe agordopaĝo por enigo de reteja regula esprimo."
+	},
+
+	"optionsSaveButton": {
+		"message": "Konservi",
+		"description": "Nomo de butono ĉe agordopaĝo por konservi ŝanĝojn."
+	}
+}

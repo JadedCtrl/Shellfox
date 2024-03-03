@@ -1,0 +1,108 @@
+{
+	"extensionName": {
+		"message": "Shellfox",
+		"description": "Name of the extension."
+	},
+
+	"extensionDescription": {
+		"message": "Run command-line programs from Firefox, easily.",
+		"description": "Description of the extension."
+	},
+
+	"pageActionName": {
+		"message": "Run shell command",
+		"description": "Name of address-bar button for running the default command on current page."
+	},
+
+	"pageCommandContextMenu": {
+		"message": "Run command “$COMMAND$”",
+		"description": "Menu-item to run a specific command on the current page.",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "Curl"
+			}
+		}
+	},
+
+	"pageCommandDefaultContextMenu": {
+		"message": "Run default shell command",
+		"description": "Menu-item to run the default command on the current page."
+	},
+
+	"linkCommandContextMenu": {
+		"message": "Run “$COMMAND$” on link",
+		"description": "Menu-item to run a specific command on a link’s URL.",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "Curl"
+			}
+		}
+	},
+
+	"linkCommandDefaultContextMenu": {
+		"message": "Run default command on link",
+		"description": "Menu-item to run the default command on a link’s URL."
+	},
+
+	"optionsTitleShell": {
+		"message": "Shell commands",
+		"description": "Title of options-page section for commands."
+	},
+
+	"optionsDescShell": {
+		"message": "Add shell commands, to be executed with a page’s URL as its argument. In a command, $URL will be replaced with the target page’s URL.",
+		"description": "Description of options-page section for commands."
+	},
+
+	"optionsHeadShellName": {
+		"message": "Name",
+		"description": "Header of table-element for options-page section for commands."
+	},
+
+	"optionsHeadShellCommand": {
+		"message": "Shell command",
+		"description": "Header of table-element for options-page section for commands."
+	},
+
+	"optionsPlaceholderName": {
+		"message": "Curl",
+		"description": "Displayed placeholder for options-page input for command-name."
+	},
+
+	"optionsPlaceholderCommand": {
+		"message": "curl $URL > /tmp/downloaded.html",
+		"description": "Displayed placeholder for options-page input for command."
+	},
+
+	"optionsTitleRule": {
+		"message": "URL/Page rules",
+		"description": "Title of options-page section for regex."
+	},
+
+	"optionsDescRule": {
+		"message": "Associate the above commands with URLs, based on regex rules. When a URL is tied to a command, a button will appear in context-menus and the address bar to run said command.",
+		"description": "Description of options-page section for regex."
+	},
+
+	"optionsHeadRuleName": {
+		"message": "URL regex",
+		"description": "Header of table-element for options-page section for regex."
+	},
+
+	"optionsHeadRuleCommand": {
+		"message": "Shell command",
+		"description": "Header of table-element for options-page section for regex."
+	},
+
+	"optionsPlaceholderRule": {
+		"message": "https://example.com/.*",
+		"description": "Displayed placeholder for options-page input for regex."
+	},
+
+	"optionsSaveButton": {
+		"message": "Apply",
+		"description": "Name of button in options-page to save changes."
+	}
+}

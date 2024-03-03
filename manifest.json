@@ -1,10 +1,12 @@
 {
 	"manifest_version": 2,
-	"name": "Shellfox",
+	"name": "__MSG_extensionName__",
 	"version": "0.1",
 
-	"description": "Run command-line programs from Firefox, easily.",
+	"description": "__MSG_extensionDescription__",
 	"homepage_url": "https://hak.xwx.moe/jadedctrl/shellfox",
+
+	"default_locale": "en",
 
 	"icons": {
 		"250": "res/shellfox.png",
@@ -17,7 +19,7 @@
 			"19": "res/shellfox-19.png",
 			"38": "res/shellfox-38.png"
 		},
-		"default_title": "Shellfox"
+		"default_title": "__MSG_pageActionName__"
 	},
 
 	"permissions": [
