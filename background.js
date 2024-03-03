@@ -10,39 +10,60 @@ function initShellfoxProgram() {
 }
 
 
+// Given the name of an array saved to localStorage, return it (if possible).
+function savedArray(name) {
+	let saved = [];
+	try {
+		saved = JSON.parse(localStorage.getItem(name));
+		return saved;
+	} catch { };
+	return saved;
+}
+
+
 // Return the command-string associated with a URL, if any.
-function getUrlCommand(url) {
-	let matchCommand = undefined;
+function getUrlCommands(url) {
+	let matchCommands = [];
 	let matchRegex = "";
 	try {
-		let savedCommands = JSON.parse(localStorage.getItem("commands"));
-		let savedRegexRules = JSON.parse(localStorage.getItem("urlRules"));
+		let savedCommands = savedArray("commands");
+		let savedRegexRules = savedArray("urlRules");
 		// Find the most-applicable command…
 		for (regexCommandIPair of savedRegexRules) {
 			let regex = regexCommandIPair[0];
 			let match = url.match(regex);
+			let command_i = regexCommandIPair[1];
+			let command = savedCommands[command_i][1];
+
 			let compared = compareRegexComplexity(matchRegex, regex);
 			if (match && (compared == 0 || compared == 1)) {
-				let command_i = regexCommandIPair[1];
-				matchCommand = savedCommands[command_i][1];
+				matchCommands.unshift(savedCommands[command_i][1]);
 				matchRegex = regex;
-			}
+			} else if (match)
+				matchCommands.push(command);
 		}
-		// … and replace the substitution-string with the URL.
-		matchCommand = matchCommand.replaceAll("$URL", url);
 	} catch {};
-	return matchCommand;
+
+	if (matchCommands.length == 0)
+		return undefined;
+	return matchCommands;
+}
+
+
+// Execute the given command string, subsituting “$URL” with the given url.
+function runCommand(command, url) {
+	if (!port)
+		initShellfoxProgram();
+	if (command && port)
+		port.postMessage(command.replaceAll("$URL", url));
 }
 
 
 // Execute the shell command associated with the given URL, if any.
 function runUrlCommand(url) {
-	let command = getUrlCommand(url);
-	if (!port)
-		initShellfoxProgram();
-	if (command && port) {
-		port.postMessage(command);
-	}
+	let commands = getUrlCommands(url);
+	if (commands)
+		runCommand(commands[0], url);
 }
 
 
@@ -82,6 +103,24 @@ function hideLinkContextMenuItem() {
 }
 
 
+function createCommandMenuItems() {
+	let savedCommands = savedArray("commands");
+	for (let i = 0; i < savedCommands.length; i++) {
+		let nameCommandPair = savedCommands[i];
+		let name = nameCommandPair[0];
+		let pageId = "run-page-command-" + i;
+		browser.menus.remove(pageId);
+		browser.menus.create(
+			{
+				id: pageId,
+				title: "Run command “" + name + "”",
+				contexts: ["page_action"]
+			});
+	}
+	browser.menus.refresh();
+}
+
+
 // Add a context-menu item for running the current page’s associated command.
 browser.menus.create(
 	{
@@ -108,12 +147,16 @@ browser.pageAction.onClicked.addListener((tab) => {
 });
 
 
+// When a context-menu (right-click menu) is opened, only display the SHellfox
+// item if there is a configured command for that page.
 browser.menus.onShown.addListener(info => {
-	if (info.contexts.includes("link") && getUrlCommand(info.linkUrl))
+	console.log(info);
+	console.log(info.modifiers);
+	if (info.contexts.includes("link") && getUrlCommands(info.linkUrl)) {
 		showLinkContextMenuItem();
-	else if (info.contexts.includes("page") && getUrlCommand(info.pageUrl))
-			showPageContextMenuItem();
-	else {
+	} else if (info.contexts.includes("page") && getUrlCommands(info.pageUrl)) {
+		showPageContextMenuItem();
+	} else {
 		hidePageContextMenuItem();
 		hideLinkContextMenuItem();
 	}
@@ -124,7 +167,7 @@ browser.menus.onShown.addListener(info => {
 // When a tab’s URL has been changed, enable/disable the address-bar button
 // based on whether or not there is an according command.
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	let command = getUrlCommand(tab.url);
+	let command = getUrlCommands(tab.url);
 	if (command)
 		browser.pageAction.show(tabId);
 	else
@@ -136,7 +179,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 // on whether or not there is an according command for it.
 browser.tabs.onActivated.addListener((activeInfo) => {
 	browser.tabs.get(activeInfo.tabId).then((tab) => {
-		if (getUrlCommand(tab.url))
+		if (getUrlCommands(tab.url))
 			browser.pageAction.show(tab.id);
 		else
 			browser.pageAction.hide(tab.id);
@@ -146,9 +189,22 @@ browser.tabs.onActivated.addListener((activeInfo) => {
 
 // When a context-menu item is selected, let’s execute its will!
 browser.menus.onClicked.addListener((info, tab) => {
-	if (info.menuItemId == "run-page-command")
+	let itemName = info.menuItemId;
+	if (itemName == "run-page-command")
 		runUrlCommand(tab.url);
-	else if (info.menuItemId == "run-link-command" && info.linkUrl)
+	else if (itemName == "run-link-command" && info.linkUrl)
 		runUrlCommand(info.linkUrl);
-
+	else if (itemName.startsWith("run-page-command-")) {
+		let command_i = itemName.split("run-page-command-")[1];
+		runCommand(savedArray("commands")[command_i][1], tab.url);
+	}
 });
+
+
+// Whenever settings (commands) are updated, repopulate context-menus’ items.
+window.addEventListener("storage", (e) => {
+	createCommandMenuItems();
+});
+
+
+createCommandMenuItems();
