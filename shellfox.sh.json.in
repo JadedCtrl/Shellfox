@@ -1,7 +1,7 @@
 {
     "name": "shellfox",
     "description": "Edit text with an external editor.",
-    "path": "/usr/local/libexec/shellfox/shellfox.sh",
+    "path": "@@NATIVE_PATH@@",
     "type": "stdio",
     "allowed_extensions": [ "shellfox@xwx.moe" ]
 }
