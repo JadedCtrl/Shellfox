@@ -1,3 +1,4 @@
+# This is based on Textern’s Makefile (https://github.com/jlebon/textern)
 ifneq ($(USER),1)
 	PREFIX ?= /usr/local
 	MOZILLA_PREFIX ?= /usr
@@ -38,4 +39,4 @@ native-uninstall:
 
 .PHONY: xpi
 xpi:
-	@rm -f shellfox.xpi && zip -r shellfox.xpi background.js _locales/ manifest.json options.* res/*.png
+	@rm -f shellfox.xpi && zip -r shellfox.xpi background.js _locales/ manifest.json options.* res/shell*.png
