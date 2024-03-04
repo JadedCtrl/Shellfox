@@ -1,12 +1,12 @@
 {
 	"extensionName": {
 		"message": "Ŝelvulpo",
-		"description": "Nomo de la aldonaĵo."
+		"description": "Nomo de la etendaĵo."
 	},
 
 	"extensionDescription": {
 		"message": "Ruli ŝel-ordonojn de Firefox, facile.",
-		"description": "Priskribo de la aldonaĵo."
+		"description": "Priskribo de la etendaĵo."
 	},
 
 	"pageActionName": {
@@ -149,5 +149,54 @@
 	"optionsSaveButton": {
 		"message": "Konservi",
 		"description": "Nomo de butono ĉe agordopaĝo por konservi ŝanĝojn."
+	},
+
+	"errorPageTitle": {
+		"message": "Ŝelvulpo eraris"
+	},
+
+	"errorTitle": {
+		"message": "Ŝelvulpo malsukcesis ruli ordonon"
+	},
+
+	"errorNotInstalled": {
+		"message": "Ŝajnas ke Ŝelvulpo ne estas fininstalita!"
+	},
+
+	"errorNotInstalledDesc": {
+		"message": "Ŝelvulpo, malkiel aliaj etendaĵoj, postulas instalon de skripto je via komputilo. Estas tiu skripto, <code>shellfox.sh</code>, kiu povigas la etendaĵon ruli ŝel-ordonojn je via komputilo."
+	},
+
+	"repairInstallTitle": {
+		"message": "Kiel fininstali"
+	},
+
+	"repairInstallIntro": {
+		"message": "Por instali la sisteman skripton Ŝelvulpan:"
+	},
+
+	"repairInstallStep1": {
+		"message": "Elŝutu la skripton per ZIP-arĥivo de la koddeponejo, <a id='zip_link'>de ĉi tie</a>."
+	},
+
+	"repairInstallStep2": {
+		"message": "Elarĥivigu la ZIP-dosieron: Ĉi tio kreos <code>shellfox</code>-dosierujon."
+	},
+
+	"repairInstallStep3": {
+		"message": "Rulu terminalon en la ĵus elarĥivigita dosierujo <code>shellfox/</code>."
+
+	},
+
+	"repairInstallStep4": {
+		"message": "Rulu terminale, <code>$ sudo make native-install</code>"
+	},
+
+	"repairInstallStep5": {
+		"message": "Gratulegon: Vi venkis!!!"
+	},
+
+	"repairInstallTerminalIntro": {
+		"message": "Farita sole en terminalo, aspektus jene:"
 	}
 }

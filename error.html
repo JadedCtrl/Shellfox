@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+		<title id="errorPageTitle">Shellfox error</title>
+	</head>
+
+	<body>
+		<h1 id="errorTitle">Shellfox failed to run command</h1>
+		<h2><span class="command"></span></h2>
+
+		<h3 id="notInstalled">It seems that Shellfox is not fully installed!</h3>
+		<p id="notInstalledDesc">Shellfox, unlike most extensions, requires a script to be installed on your computer. This script, <code>shellfox.sh</code>, is what allows us to execute shell commands.</p>
+
+		<h3 id="installTitle">Completing installation</h3>
+		<p id="installIntro">To install Shellfox’es local component:</p>
+		<ol>
+			<li id="installStep1">Download the script through the repository’s ZIP archive <a href="https://hak.xwx.moe/jadedctrl/shellfox/archive/master.zip">here</a>.</li>
+			<li id="installStep2">Extract the ZIP archive: This leaves a <code>shellfox/</code> folder.</li>
+			<li id="installStep3">Open a terminal within that <code>shellfox/</code> folder.</li>
+			<li id="installStep4">Run the command, <code>$ sudo make native-install</code></li>
+			<li id="installStep5">You’re done: Party!!</li>
+		</ol>
+
+		<p id="installTerminalIntro">From a terminal, that would look something like:</p>
+		<code>$ curl https://hak.xwx.moe/jadedctrl/shellfox/archive/master.tar.gz | tar -xzv</code><br>
+		<code>$ cd shellfox/</code><br>
+		<code>$ sudo make native-install</code><br>
+	</body>
+
+	<script src="error.js"></script>
+</html>

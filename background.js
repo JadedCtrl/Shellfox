@@ -6,6 +6,19 @@ function initShellfoxProgram() {
 	port.onDisconnect.addListener((port) => {
 		console.log(port.error);
 		port = undefined;
+
+		// Tell the user about the error…
+		browser.tabs.query({"active": true}).then((tabs) => {
+			let openerTab = undefined;
+			if (tabs && tabs.length > 0)
+				openerTab = tabs[0].id;
+
+			browser.tabs.create({
+				"active": true,
+				"url": "/error.html",
+				"openerTabId": openerTab
+			})
+		});
 	});
 }
 

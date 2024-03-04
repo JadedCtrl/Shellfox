@@ -149,5 +149,65 @@
 	"optionsSaveButton": {
 		"message": "Apply",
 		"description": "Name of button in options-page to save changes."
+	},
+
+	"errorPageTitle": {
+		"message": "Shellfox error",
+		"description": "Title of the error-page."
+	},
+
+	"errorTitle": {
+		"message": "Shellfox failed to run command",
+		"description": "Heading-title of the error-page."
+	},
+
+	"errorNotInstalled": {
+		"message": "It seems that Shellfox is not fully installed!",
+		"description": "Summary of not-installed error."
+	},
+
+	"errorNotInstalledDesc": {
+		"message": "Shellfox, unlike most extensions, requires a script to be installed on your computer. This script, <code>shellfox.sh</code>, is what allows us to execute shell commands.It seems that Shellfox is not fully installed!",
+		"description": "Detailed description of not-installed error."
+	},
+
+	"repairInstallTitle": {
+		"message": "Completing installation",
+		"description": "Title of the repair-section for installation."
+	},
+
+	"repairInstallIntro": {
+		"message": "To install Shellfox’es local component:",
+		"description": "Intro to the installation guide, following by an itemized list of steps."
+	},
+
+	"repairInstallStep1": {
+		"message": "Download the script through the repository’s ZIP archive <a id='zip_link'>here</a>.",
+		"description": "Step in the installation guide."
+	},
+
+	"repairInstallStep2": {
+		"message": "Extract the ZIP archive: This leaves a <code>shellfox/</code> folder.",
+		"description": "Step in the installation guide."
+	},
+
+	"repairInstallStep3": {
+		"message": "Open a terminal within that <code>shellfox/</code> folder.",
+		"description": "Step in the installation guide."
+	},
+
+	"repairInstallStep4": {
+		"message": "Run the command, <code>$ sudo make native-install</code>",
+		"description": "Step in the installation guide."
+	},
+
+	"repairInstallStep5": {
+		"message": "You’re done: Party!!",
+		"description": "Light-hearted celebration step in the installation guide."
+	},
+
+	"repairInstallTerminalIntro": {
+		"message": "From a terminal, that would look something like:",
+		"description": "Intro to a terminal-based installation description."
 	}
 }
