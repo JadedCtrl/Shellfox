@@ -16,7 +16,7 @@
 
 	"page_action": {
 		"default_icon": {
-			"250": "img/shellfox-action.png",
+			"150": "img/shellfox-action.png",
 			"38": "img/shellfox-action-38.png",
 			"19": "img/shellfox-action-19.png"
 		},
