@@ -101,6 +101,41 @@
 		"description": "Provizora valoro ĉe agordopaĝo por enigo de reteja regula esprimo."
 	},
 
+	"optionsTitleDownload": {
+		"message": "Elŝutaj ŝel-ordonoj",
+		"description": "Titolo de agordo-parto por elŝutaj ordonoj."
+	},
+
+	"optionsDescDownload": {
+		"message": "Agordi ordonojn kiuj ruliĝu dum komenciĝo aŭ finiĝo de elŝutado, laŭ URL (regulesprime). En ordonoj, «$URL» anstataŭiĝos per la elŝuta URL, kaj «$FILE» per la elŝuta dosiervojo.",
+		"description": "Priskribo de agordo-parto por elŝutaj ordonoj."
+	},
+
+	"optionsHeadDownloadRule": {
+		"message": "URL regula esprimo",
+		"description": "Titolo de tabelo-kolumno ĉe agordo-parto por elŝutaj ordonoj."
+	},
+
+	"optionsHeadDownloadCommand": {
+		"message": "Ŝel-ordono",
+		"description": "Titolo de tabelo-kolumno ĉe agordo-parto por elŝutaj ordonoj."
+	},
+
+	"optionsHeadDownloadType": {
+		"message": "Rulu je…",
+		"description": "Titolo de tabelo-kolumno ĉe agordo-parto por elŝutaj ordonoj."
+	},
+
+	"optionsDownloadWhenStarted": {
+		"message": "… komenciĝo",
+		"description": "Menuero ĉe agordo-parto por elŝutaj ordonoj. Finas la frazon, «Rulu je…»"
+	},
+
+	"optionsDownloadWhenFinished": {
+		"message": "… finiĝo",
+		"description": "Menuero ĉe agordo-parto por elŝutaj ordonoj. Finas la frazon, «Rulu je…»"
+	},
+
 	"optionsSaveButton": {
 		"message": "Konservi",
 		"description": "Nomo de butono ĉe agordopaĝo por konservi ŝanĝojn."

@@ -101,6 +101,41 @@
 		"description": "Displayed placeholder for options-page input for regex."
 	},
 
+	"optionsTitleDownload": {
+		"message": "Download commands",
+		"description": "Title of options-page section for download commands."
+	},
+
+	"optionsDescDownload": {
+		"message": "Assign commands to be executed for certain URLs (by regex) when downloads are initiated or finished. In commands, $URL will be replaced with the download’s URL, and $FILE with the target file.",
+		"description": "Description of options-page section for download commands."
+	},
+
+	"optionsHeadDownloadRule": {
+		"message": "URL regex",
+		"description": "Header of table-element for options-page section for download commands."
+	},
+
+	"optionsHeadDownloadCommand": {
+		"message": "Shell command",
+		"description": "Header of table-element for options-page section for download commands."
+	},
+
+	"optionsHeadDownloadType": {
+		"message": "Run when…",
+		"description": "Header of table-element for options-page section for download commands."
+	},
+
+	"optionsDownloadWhenStarted": {
+		"message": "… started",
+		"description": "Member of menu-list for options-page section for download commands. Completes the sentence, “Run when…”"
+	},
+
+	"optionsDownloadWhenFinished": {
+		"message": "… finished",
+		"description": "Member of menu-list for options-page section for download commands. Completes the sentence, “Run when…”"
+	},
+
 	"optionsSaveButton": {
 		"message": "Apply",
 		"description": "Name of button in options-page to save changes."

@@ -4,30 +4,47 @@
 		<meta charset="utf8">
 	</head>
 	<body>
-		<section>
-			<h3 id="commandTitle">Shell commands</h3>
-			<p id="commandP">Add shell commands, to be executed with a page’s URL as its argument. In a command, $URL will be replaced with the target page’s URL.</p>
-			<table id="commandTable">
-				<tr>
-					<th id="commandNameTh">Name</th>
-					<th id="commandShellTh">Shell command</th>
-				</tr>
-			</table>
-			<button style="width: 5em;" id="save-cmd">Apply</button>
-		</section>
+		<article>
+			<section>
+				<h3 id="commandTitle">Shell commands</h3>
+				<p id="commandP">Add shell commands, to be executed with a page’s URL as its argument. In a command, $URL will be replaced with the target page’s URL.</p>
+				<table id="commandTable">
+					<tr>
+						<th id="commandNameTh">Name</th>
+						<th id="commandShellTh">Shell command</th>
+					</tr>
+				</table>
+				<button style="width: 5em;" id="save-cmd">Apply</button>
+			</section>
 
 
-		<section>
-			<h3 id="ruleTitle">URL/Page rules</h3>
-			<p id="ruleP">Associate the above commands with URLs, based on regex rules. When a URL is tied to a command, a button will appear in context-menus and the address bar to run said command.</p>
-			<table id="regexTable">
+			<section>
+				<h3 id="ruleTitle">URL/Page rules</h3>
+				<p id="ruleP">Associate the above commands with URLs, based on regex rules. When a URL is tied to a command, a button will appear in context-menus and the address bar to run said command.</p>
+				<table id="regexTable">
+					<tr>
+						<th id="ruleRegexTh">URL regex</th>
+						<th id="ruleShellTh">Shell command</th>
+					</tr>
+				</table>
+				<button style="width: 5em;" id="save-regex">Apply</button>
+			</section>
+		</article>
+
+		<hr/>
+
+		<article>
+			<h3 id="downloadTitle">Download commands</h3>
+			<p id="downloadP">Assign commands to be executed for certain URLs (by regex) when downloads are initiated or finished. In commands, $URL will be replaced with the download’s URL, and $FILE with the target file.</p>
+			<table id="downloadTable">
 				<tr>
-					<th id="ruleRegexTh">URL regex</th>
-					<th id="ruleShellTh">Shell command</th>
+					<th id="downloadTypeTh">On start/finish</th>
+					<th id="downloadRegexTh">URL regex</th>
+					<th id="downloadShellTh">Shell command</th>
 				</tr>
 			</table>
-			<button style="width: 5em;" id="save-regex">Apply</button>
-		</section>
+			<button style="width: 5em;" id="save-downloads">Apply</button>
+		</article>
 
 
 		<script src="options.js"></script>
