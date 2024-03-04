@@ -136,6 +136,16 @@
 		"description": "Menuero ĉe agordo-parto por elŝutaj ordonoj. Finas la frazon, «Rulu je…»"
 	},
 
+	"optionsPlaceholderDownloadRegex": {
+		"message": ".*.png",
+		"description": "Provizora valoro ĉe agordopaĝo por enigo de regula esprimo por elŝuta ordono."
+	},
+
+	"optionsPlaceholderDownloadCommand": {
+		"message": "echo $URL > $FILE.url",
+		"description": "Provizora valoro ĉe agordopaĝo por enigo de elŝuta ordono."
+	},
+
 	"optionsSaveButton": {
 		"message": "Konservi",
 		"description": "Nomo de butono ĉe agordopaĝo por konservi ŝanĝojn."

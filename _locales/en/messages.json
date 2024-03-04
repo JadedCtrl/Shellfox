@@ -136,6 +136,16 @@
 		"description": "Member of menu-list for options-page section for download commands. Completes the sentence, “Run when…”"
 	},
 
+	"optionsPlaceholderDownloadRegex": {
+		"message": ".*.png",
+		"description": "Displayed placeholder for options-page input for download command’s regex."
+	},
+
+	"optionsPlaceholderDownloadCommand": {
+		"message": "echo $URL > $FILE.url",
+		"description": "Displayed placeholder for options-page input for download command."
+	},
+
 	"optionsSaveButton": {
 		"message": "Apply",
 		"description": "Name of button in options-page to save changes."

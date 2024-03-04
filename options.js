@@ -148,7 +148,8 @@ function createDownloadTr(regex, command, type) {
 	let regexInput = document.createElement("INPUT");
 	regexInput.setAttribute("class", "regex");
 	regexInput.setAttribute("type", "text");
-	regexInput.setAttribute("placeholder", browser.i18n.getMessage("optionsPlaceholderDownloadRule"));
+	regexInput.setAttribute("placeholder",
+		browser.i18n.getMessage("optionsPlaceholderDownloadRegex"));
 	if (regex && command && type)
 		regexInput.setAttribute("value", regex);
 
@@ -158,7 +159,8 @@ function createDownloadTr(regex, command, type) {
 	let commandInput = document.createElement("INPUT");
 	commandInput.setAttribute("class", "command");
 	commandInput.setAttribute("type", "text");
-	commandInput.setAttribute("placeholder", browser.i18n.getMessage("optionsPlaceholderDownloadRule"));
+	commandInput.setAttribute("placeholder",
+		browser.i18n.getMessage("optionsPlaceholderDownloadCommand"));
 	if (regex && command && type)
 		commandInput.setAttribute("value", command);
 
