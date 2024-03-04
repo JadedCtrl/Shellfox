@@ -15,7 +15,7 @@ function initShellfoxProgram() {
 
 			browser.tabs.create({
 				"active": true,
-				"url": "/error.html",
+				"url": "/html/error.html",
 				"openerTabId": openerTab
 			})
 		});

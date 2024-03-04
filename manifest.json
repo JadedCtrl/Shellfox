@@ -9,16 +9,16 @@
 	"default_locale": "en",
 
 	"icons": {
-		"250": "res/shellfox.png",
-		"38": "res/shellfox-38.png",
-		"19": "res/shellfox-19.png"
+		"250": "img/shellfox.png",
+		"38": "img/shellfox-38.png",
+		"19": "img/shellfox-19.png"
 	},
 
 	"page_action": {
 		"default_icon": {
-			"250": "res/shellfox-action.png",
-			"38": "res/shellfox-action-38.png",
-			"19": "res/shellfox-action-19.png"
+			"250": "img/shellfox-action.png",
+			"38": "img/shellfox-action-38.png",
+			"19": "img/shellfox-action-19.png"
 		},
 		"default_title": "__MSG_pageActionName__"
 	},
@@ -45,6 +45,6 @@
 	},
 
 	"options_ui": {
-		"page": "options.html"
+		"page": "html/options.html"
 	}
 }
