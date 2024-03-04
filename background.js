@@ -48,12 +48,42 @@ function getUrlCommands(url) {
 }
 
 
-// Execute the given command string, subsituting “$URL” with the given url.
-function runCommand(command, url) {
+// Return the download-command string (if any) associated with a URL and type
+// integer (0→started; 1→finished).
+function getDownloadCommand(url, type) {
+	let matchCommand = undefined;
+	let matchRegex = "";
+	try {
+		let savedDownloads = savedArray("downloadCommands");
+		// Find the most-applicable command.
+		for (regexCommandType of savedDownloads) {
+			let regex = regexCommandType[0];
+			let match = url.match(regex);
+
+			let compared = compareRegexComplexity(matchRegex, regex);
+			if ((match && (compared == 0 || compared == 1))
+				&& (regexCommandType[2] == type))
+			{
+				matchCommand = regexCommandType[1];
+				matchRegex = regex;
+			}
+		}
+	} catch {};
+	return matchCommand;
+}
+
+
+// Execute the given command string, subsituting “$URL” with url and
+// “$FILE” with filepath.
+function runCommand(command, url, filepath) {
 	if (!port)
 		initShellfoxProgram();
 	if (command && port)
-		port.postMessage(command.replaceAll("$URL", url));
+		port.postMessage(command
+						 .replaceAll("$URL", url)
+						 .replaceAll("${URL}", url)
+						 .replaceAll("$FILE", filepath)
+						 .replaceAll("${FILE}", filepath));
 }
 
 
@@ -101,8 +131,9 @@ function hideLinkContextMenuItem() {
 }
 
 
+// (Re-)Create the menu-items for each context menu.
 function createCommandMenuItems() {
-	let savedCommands = savedArray("commands");
+	let savedCommands = savedArray("commands") || [];
 	for (let i = 0; i < savedCommands.length; i++) {
 		let nameCommandPair = savedCommands[i];
 		let name = nameCommandPair[0];
@@ -212,6 +243,26 @@ browser.menus.onClicked.addListener((info, tab) => {
 		let command_i = itemName.split("-command-")[1];
 		runCommand(savedArray("commands")[command_i][1], info.linkUrl || tab.url);
 	}
+});
+
+
+// When a download starts, run any applicable download commands.
+browser.downloads.onCreated.addListener((downloadItem) => {
+	let command = getDownloadCommand(downloadItem.url, 0);
+	if (command)
+		runCommand(command, downloadItem.url, downloadItem.filename);
+});
+
+
+// When a download completes, run any applicable download commands.
+browser.downloads.onChanged.addListener((downloadDelta) => {
+	browser.downloads.search({ "id": downloadDelta.id }).then((downloadItems) => {
+		if (downloadDelta.state.current == "complete" && downloadItems.length > 0) {
+			let command = getDownloadCommand(downloadItems[0].url, 1);
+			if (command)
+				runCommand(command, downloadItems[0].url, downloadItems[0].filename);
+		}
+	})
 });
 
 
