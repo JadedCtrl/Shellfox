@@ -1,3 +1,9 @@
+let urlParams = location.toString().split("?error=");
+if (urlParams && urlParams.length > 0) {
+	let errorText = unescape(urlParams[urlParams.length - 1]);
+	document.getElementById("error").innerText = "«" + errorText + "»";
+}
+
 document.getElementsByTagName("html")[0].setAttribute("lang", browser.i18n.getMessage("@@ui_locale"));
 
 document.getElementById("errorPageTitle").innerText = browser.i18n.getMessage("errorPageTitle");

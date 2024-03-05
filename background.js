@@ -3,22 +3,30 @@ let port = undefined;
 // Run the shellfox helper program.
 function initShellfoxProgram() {
 	port = browser.runtime.connectNative("shellfox");
-	port.onDisconnect.addListener((port) => {
-		console.log(port.error);
-		port = undefined;
+	if (!port)
+		shellfoxFailed();
+	else
+		port.onDisconnect.addListener(shellfoxFailed);
+}
 
-		// Tell the user about the error…
-		browser.tabs.query({"active": true}).then((tabs) => {
-			let openerTab = undefined;
-			if (tabs && tabs.length > 0)
-				openerTab = tabs[0].id;
 
-			browser.tabs.create({
-				"active": true,
-				"url": "/html/error.html",
-				"openerTabId": openerTab
-			})
-		});
+// Display an error when we fail to launch Shellfox’es script.
+function shellfoxFailed() {
+	let error = port.error;
+	console.log(error);
+	port = undefined;
+
+	// Tell the user about the error…
+	browser.tabs.query({"active": true}).then((tabs) => {
+		let openerTab = undefined;
+		if (tabs && tabs.length > 0)
+			openerTab = tabs[0].id;
+
+		browser.tabs.create({
+			"active": true,
+			"url": "/html/error.html?error=" + escape(error),
+			"openerTabId": openerTab
+		})
 	});
 }
 
