@@ -2,11 +2,17 @@
 <html lang="en">
 	<head>
 		<meta charset="utf8" />
+		<link href="error.css" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/png" href="../img/shellfox-38.png">
 		<title id="errorPageTitle">Shellfox error</title>
 	</head>
 
 	<body>
-		<h1 id="errorTitle">Shellfox failed to run command</h1>
+		<span>
+			<img style="display: inline; width: 3em;" src="../img/shellfox.png">
+			<h1 style="display: inline;" id="errorTitle">Shellfox failed to run command</h1>
+		</span>
+
 		<h2 id="error"></h2>
 
 		<h2 id="notInstalled">It seems that Shellfox is not fully installed!</h2>
@@ -26,6 +32,9 @@
 		<code>$ curl https://hak.xwx.moe/jadedctrl/shellfox/archive/master.tar.gz | tar -xzv</code><br>
 		<code>$ cd shellfox/</code><br>
 		<code>$ sudo make native-install</code><br>
+
+		<h2 id="troubleshootTitle">Troubleshooting</h2>
+		<p id="troubleshootDesc">If Shellfox’s script is installed but you still see this page — that is, the <a href="#error">above error</a> isn’t “Error: No such native application shellfox” — please report the issue! You can report it on the <a href="https://hak.xwx.moe/jadedctrl/shellfox/issues">Shellfox bug-tracker</a>, or by sending an email to xwx@posteo.org. Let’s get that fixed! Please make sure to include your operating system and Firefox version in the report.</p>
 	</body>
 
 	<script src="error.js"></script>

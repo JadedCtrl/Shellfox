@@ -209,5 +209,26 @@
 	"repairInstallTerminalIntro": {
 		"message": "From a terminal, that would look something like:",
 		"description": "Intro to a terminal-based installation description."
+	},
+
+	"troubleshootTitle": {
+		"message": "Troubleshooting",
+		"description": "Title of the Troubleshooting-paragraph of the error page."
+	},
+
+	"troubleshootDesc": {
+		"message": "If Shellfox’s script is installed but you still see this page — that is, the <a href='#error'>above error</a> isn’t “Error: No such native application shellfox” — please report the issue! You can report it on the <a id='tracker_link'>Shellfox bug-tracker</a>, or by sending an email to xwx@posteo.org. Let’s get that fixed! Please make sure to include your operating system and Firefox version in the report.",
+		"description": "Contents of the Troubleshooting-paragraph of the error page."
+	},
+
+	"errorMessage": {
+		"message": "Error: “$ERROR$”",
+		"description": "The text of the header of the error page that displays the error message.",
+		"placeholders": {
+			"error": {
+				"content": "$1",
+				"example": "No such program."
+			}
+		}
 	}
 }

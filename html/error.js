@@ -1,9 +1,12 @@
+// Most importantly: Write the passed GET error (if any) to the error-header.
 let urlParams = location.toString().split("?error=");
 if (urlParams && urlParams.length > 0) {
 	let errorText = unescape(urlParams[urlParams.length - 1]);
-	document.getElementById("error").innerText = "«" + errorText + "»";
+	document.getElementById("error").innerText = browser.i18n.getMessage("errorMessage", errorText);
 }
 
+
+// Write locale-specific translations to the page.
 document.getElementsByTagName("html")[0].setAttribute("lang", browser.i18n.getMessage("@@ui_locale"));
 
 document.getElementById("errorPageTitle").innerText = browser.i18n.getMessage("errorPageTitle");
@@ -20,4 +23,12 @@ document.getElementById("installStep4").innerHTML = browser.i18n.getMessage("rep
 document.getElementById("installStep5").innerText = browser.i18n.getMessage("repairInstallStep5");
 document.getElementById("installTerminalIntro").innerText = browser.i18n.getMessage("repairInstallTerminalIntro");
 
+document.getElementById("troubleshootTitle").innerText = browser.i18n.getMessage("troubleshootTitle");
+document.getElementById("troubleshootDesc").innerHTML = browser.i18n.getMessage("troubleshootDesc");
+
+
+// Now, write our repo’s URLs to the links.
 document.getElementById("zip_link").setAttribute("href", "https://hak.xwx.moe/jadedctrl/shellfox/archive/master.zip");
+document.getElementById("tracker_link").setAttribute("href", "https://hak.xwx.moe/jadedctrl/shellfox/issues");
+
+

@@ -198,5 +198,24 @@
 
 	"repairInstallTerminalIntro": {
 		"message": "Farita sole en terminalo, aspektus jene:"
+	},
+
+	"troubleshootTitle": {
+		"message": "Pluaj eraroj"
+	},
+
+	"troubleshootDesc": {
+		"message": "Se la skripto estas instalita sed vi ankoraŭ renkontas ĉi tiun paĝon — t.e., ke la <a href='#error'>supra eraro</a> <i>ne</i> estas «Error: No such native application shellfox» — bonvolu raportu la eraron! Raporteblas ĉe la <a id='tracker_link'>erarraportilo de Ŝelvulpo</a>, aŭ per retletero al xwx@posteo.org. Ni riparu la problemon! Bonvolu ne forgesi noti vian operaciumon kaj Firefox-version en la raporto."
+	},
+
+	"errorMessage": {
+		"message": "Eraro: «$ERROR$»",
+		"placeholders": {
+			"error": {
+				"content": "$1",
+				"example": "No such program."
+			}
+		}
 	}
 }
+
