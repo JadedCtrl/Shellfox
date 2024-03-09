@@ -17,6 +17,11 @@ function shellfoxFailed() {
 	port = undefined;
 
 	// Tell the user about the error…
+	openNewTab("/html/error.html?error=" + escape(error));
+}
+
+
+function openNewTab(url) {
 	browser.tabs.query({"active": true}).then((tabs) => {
 		let openerTab = undefined;
 		if (tabs && tabs.length > 0)
@@ -24,7 +29,7 @@ function shellfoxFailed() {
 
 		browser.tabs.create({
 			"active": true,
-			"url": "/html/error.html?error=" + escape(error),
+			"url": url,
 			"openerTabId": openerTab
 		})
 	});
@@ -264,6 +269,10 @@ browser.menus.onClicked.addListener((info, tab) => {
 		let command_i = itemName.split("-command-")[1];
 		runCommand(savedArray("commands")[command_i][1], info.linkUrl || tab.url);
 	}
+});
+
+browser.browserAction.onClicked.addListener(() => {
+	openNewTab("/html/options.html");
 });
 
 

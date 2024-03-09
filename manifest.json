@@ -5,13 +5,15 @@
 
 	"description": "__MSG_extensionDescription__",
 	"homepage_url": "https://hak.xwx.moe/jadedctrl/shellfox",
+	"author": "Jaidyn Ann",
 
 	"default_locale": "en",
 
 	"icons": {
-		"250": "img/shellfox.png",
-		"38": "img/shellfox-38.png",
-		"19": "img/shellfox-19.png"
+		"512": "img/shellfox-512.png",
+		"48": "img/shellfox-48.png",
+		"32": "img/shellfox-32.png",
+		"16": "img/shellfox-16.png"
 	},
 
 	"page_action": {
@@ -21,6 +23,9 @@
 			"19": "img/shellfox-action-19.png"
 		},
 		"default_title": "__MSG_pageActionName__"
+	},
+
+	"browser_action": {
 	},
 
 	"permissions": [
@@ -45,6 +50,6 @@
 	},
 
 	"options_ui": {
-		"page": "html/options.html"
+		"page": "html/options.html?in_ui"
 	}
 }

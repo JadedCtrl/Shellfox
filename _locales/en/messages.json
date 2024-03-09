@@ -151,6 +151,11 @@
 		"description": "Name of button in options-page to save changes."
 	},
 
+	"optionsPageTitle": {
+		"message": "Shellfox settings",
+		"description": "Title of the settings-page."
+	},
+
 	"errorPageTitle": {
 		"message": "Shellfox error",
 		"description": "Title of the error-page."

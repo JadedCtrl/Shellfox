@@ -151,6 +151,11 @@
 		"description": "Nomo de butono ĉe agordopaĝo por konservi ŝanĝojn."
 	},
 
+	"optionsPageTitle": {
+		"message": "Ŝelvulpaj agordoj",
+		"description": "Titolo de agordo-paĝo."
+	},
+
 	"errorPageTitle": {
 		"message": "Ŝelvulpo eraris"
 	},

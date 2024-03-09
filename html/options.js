@@ -239,6 +239,7 @@ function createCommandTr(name, command) {
 // Replace the HTML elements’ text with the extension’s translations.
 function i18nPage() {
 	document.getElementsByTagName("html")[0].setAttribute("lang", browser.i18n.getMessage("@@ui_locale"));
+	document.getElementsByTagName("title")[0].innerText = browser.i18n.getMessage("optionsPageTitle");
 
 	document.getElementById("commandTitle").innerText = browser.i18n.getMessage("optionsTitleShell");
 	document.getElementById("commandP").innerText = browser.i18n.getMessage("optionsDescShell");
@@ -280,3 +281,14 @@ populateCommandTable();
 populateRegexTable();
 populateDownloadTable();
 i18nPage();
+
+
+// Only add CSS if we’re not in the Firefox-embedded settings, but
+// rather, in our own tab.
+if (!(location.toString().includes("?in_ui"))) {
+	let cssElement = document.createElement("LINK");
+	cssElement.setAttribute("rel", "stylesheet");
+	cssElement.setAttribute("type", "text/css");
+	cssElement.setAttribute("href", "error.css");
+	document.getElementsByTagName("head")[0].appendChild(cssElement);
+}
