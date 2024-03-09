@@ -39,4 +39,4 @@ native-uninstall:
 
 .PHONY: xpi
 xpi:
-	@rm -f shellfox.xpi && zip -r shellfox.xpi background.js manifest.json _locales html img/shellfox*.png
+	@rm -f shellfox.xpi && zip -r shellfox.xpi background.js manifest.json _locales html img/shellfox*.png img/shellfox.svg
