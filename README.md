@@ -1,4 +1,4 @@
-# ![](img/shellfox-38.png) Shellfox
+# ![](img/shellfox-32.png) Shellfox
 
 [Shellfox](https://hak.xwx.moe/jadedctrl/shellfox) is a simple add-on for [Firefox](https://firefox.com) that allows you to run shell commands at the click of a button.
 

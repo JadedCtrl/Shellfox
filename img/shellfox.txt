@@ -1,5 +1,2 @@
-Beautiful shell photo by H. Zell, 2014. Under the CC-BY-SA 3.0.
-https://commons.wikimedia.org/wiki/File:Cepaea_vindobonensis_-_Banding_variation.jpg
-
-Ears from Pleroma-tan: pleroma-tan-smol.jpg, © 2019 shitposter.club. Under the CC-BY-SA 4.0.
-https://git.pleroma.social/pleroma/pleroma/-/blob/develop/priv/static/images/pleroma-fox-tan.png
+These charming icons were kindly made by Tirifto <tirifto@posteo.cz>!
+They are, like Shellfox in its entirety, under the GPLv3+.
