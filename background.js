@@ -99,25 +99,27 @@ function getDownloadCommand(url, type) {
 }
 
 
-// Execute the given command string, subsituting “$URL” with url and
-// “$FILE” with filepath.
-function runCommand(command, url, filepath) {
+// Execute the given command string, subsituting “$URL” with url,
+// “$FILE” with filepath, and “$REFERRER” with referrer.
+function runCommand(command, url, filepath, referrer) {
 	if (!port)
 		initShellfoxProgram();
 	if (command && port)
 		port.postMessage(command
 						 .replaceAll("$URL", url)
 						 .replaceAll("${URL}", url)
+						 .replaceAll("$REFERRER", referrer || "")
+						 .replaceAll("${REFERRER}", referrer || "")
 						 .replaceAll("$FILE", filepath)
 						 .replaceAll("${FILE}", filepath));
 }
 
 
 // Execute the shell command associated with the given URL, if any.
-function runUrlCommand(url) {
+function runUrlCommand(url, referrer) {
 	let commands = getUrlCommands(url);
 	if (commands)
-		runCommand(commands[0], url);
+		runCommand(commands[0], url, "", referrer);
 }
 
 
@@ -264,10 +266,10 @@ browser.menus.onClicked.addListener((info, tab) => {
 	if (itemName == "run-page-command")
 		runUrlCommand(tab.url);
 	else if (itemName == "run-link-command" && info.linkUrl)
-		runUrlCommand(info.linkUrl);
+		runUrlCommand(info.linkUrl, tab.url);
 	else if (itemName.startsWith("run-")) {
 		let command_i = itemName.split("-command-")[1];
-		runCommand(savedArray("commands")[command_i][1], info.linkUrl || tab.url);
+		runCommand(savedArray("commands")[command_i][1], info.linkUrl || tab.url, tab.url);
 	}
 });
 
@@ -280,7 +282,7 @@ browser.browserAction.onClicked.addListener(() => {
 browser.downloads.onCreated.addListener((downloadItem) => {
 	let command = getDownloadCommand(downloadItem.url, 0);
 	if (command)
-		runCommand(command, downloadItem.url, downloadItem.filename);
+		runCommand(command, downloadItem.url, downloadItem.filename, downloadItem.referrer);
 });
 
 
@@ -290,7 +292,8 @@ browser.downloads.onChanged.addListener((downloadDelta) => {
 		if (downloadDelta.state.current == "complete" && downloadItems.length > 0) {
 			let command = getDownloadCommand(downloadItems[0].url, 1);
 			if (command)
-				runCommand(command, downloadItems[0].url, downloadItems[0].filename);
+				runCommand(command, downloadItems[0].url,
+						   downloadItems[0].filename, downloadItems[0].referrer);
 		}
 	})
 });

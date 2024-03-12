@@ -107,7 +107,7 @@
 	},
 
 	"optionsDescDownload": {
-		"message": "Agordi ordonojn kiuj ruliĝu dum komenciĝo aŭ finiĝo de elŝutado, laŭ URL (regulesprime). En ordonoj, «$URL» anstataŭiĝos per la elŝuta URL, kaj «$FILE» per la elŝuta dosiervojo.",
+		"message": "Agordi ordonojn kiuj ruliĝu dum komenciĝo aŭ finiĝo de elŝutado, laŭ URL (regulesprime). En ordonoj, «$FILE» anstataŭiĝos per la elŝuta dosiervojo, «$URL» anstataŭiĝos per la elŝuta URL, kaj «$REFERRER» per la deelŝutita URL.",
 		"description": "Priskribo de agordo-parto por elŝutaj ordonoj."
 	},
 

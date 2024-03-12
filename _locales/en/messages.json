@@ -107,7 +107,7 @@
 	},
 
 	"optionsDescDownload": {
-		"message": "Assign commands to be executed for certain URLs (by regex) when downloads are initiated or finished. In commands, $URL will be replaced with the download’s URL, and $FILE with the target file.",
+		"message": "Assign commands to be executed for certain URLs (by regex) when downloads are initiated or finished. In commands, $FILE will be replaced with the target file, $URL will be replaced with the download’s URL, and $REFERRER with the referring URL.",
 		"description": "Description of options-page section for download commands."
 	},
 
