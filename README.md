@@ -1,16 +1,19 @@
 # ![](img/shellfox-32.png) Shellfox
 
-[Shellfox](https://hak.xwx.moe/jadedctrl/shellfox) is a simple add-on for [Firefox](https://firefox.com) that allows you to run shell commands at the click of a button.
+[Shellfox](https://hak.xwx.moe/jadedctrl/shellfox) is a simple add-on for [Firefox](https://firefox.com) that allows you to run shell
+commands at the click of a button.
 
 <img alt="Screenshot of Shellfox." width=555px src="img/screenshot-youtube.png">
 
 
 ## Installation
-Shellfox has two components: A Firefox extension, and a native script that the extension uses to run commands.
+Shellfox has two components: A Firefox extension, and a native script that the
+extension uses to run commands.
 
 You can install the Firefox extension from [Firefox Add-ons (AMO)](https://addons.mozilla.org/en-US/firefox/addon/shellfox).
 
-The native script has only been tested on GNU/Linux, though it is likely to work on BSDs, and potentially macOS. It can be installed like so:
+The native script has only been tested on GNU/Linux, though it is likely to work
+on BSDs, and potentially macOS. It can be installed like so:
 
 1. Download the repository: [master.zip](https://hak.xwx.moe/jadedctrl/shellfox/archive/master.zip)
 2. Extract the ZIP-archive; this will make a folder called `shellfox/`.
@@ -31,7 +34,11 @@ $ sudo make native-install
 
 
 ## Related projects
-This add-on was inspired by [Textern](https://github.com/jlebon/textern/), which allows you to edit text-boxes with an external editor like [Emacs](https://gnu.org/software/emacs). It’s very useful, I highly recommend it!
+This add-on was inspired by [Textern](https://github.com/jlebon/textern/), which allows you to edit text-boxes
+with an external editor like [Emacs](https://gnu.org/software/emacs). It’s very useful, I highly recommend it!
+
+If you like mixing web-browsing with shell, then you’ll probably also like
+[TabFS](https://omar.website/tabfs/), a FUSE filesystem that exposes your browser tabs as files.
 
 
 ## Source code
